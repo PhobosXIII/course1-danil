@@ -11,15 +11,17 @@ public class Mem {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String link; // путь до файла в телефоне
+    private String comment;
 
-    public Mem(String link) {
-        this(0, link);
+    public Mem(String link, String comment) {
+        this(0, link, comment);
     }
 
     @Ignore
-    public Mem(long id, String link) {
+    public Mem(long id, String link, String comment) {
         this.id = id;
         this.link = link;
+        this.comment = comment;
     }
 
     public long getId() {
@@ -38,18 +40,27 @@ public class Mem {
         this.link = link;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Mem mem = (Mem) o;
         return id == mem.id &&
-                Objects.equals(link, mem.link);
+                Objects.equals(link, mem.link) &&
+                Objects.equals(comment, mem.comment);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, link);
+        return Objects.hash(id, link, comment);
     }
 }

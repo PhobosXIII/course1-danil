@@ -11,6 +11,9 @@ public interface MemDao {
     @Query("SELECT * FROM mems")
     List<Mem> getAll();
 
+    @Query("SELECT * FROM mems WHERE comment LIKE '%' || :comment || '%'")
+    List<Mem> getMemsByComment(String comment);
+
     @Query("SELECT * FROM mems WHERE id = :id")
     Mem getById(long id);
 
